@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/_comps/actions.js", "app/_comps/Logout.jsx", "app/(main)/_main_comps/Sidebar.jsx", "app/(main)/home/[docID]/page.jsx", "app/(main)/_main_comps/Document.jsx", "app/(main)/_main_comps/doc/DialogButton.jsx", "app/(main)/_main_comps/Test2.jsx", "app/(main)/_comps/Document.jsx", "app/(main)/test2/page.jsx", "utils/serverAction.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/_comps/actions.js", "app/_comps/Logout.jsx", "app/(main)/_main_comps/Sidebar.jsx", "app/(main)/home/[docID]/page.jsx", "app/(main)/_main_comps/Document.jsx", "app/(main)/_main_comps/doc/DialogButton.jsx", "app/(main)/_main_comps/Test2.jsx", "app/(main)/_comps/Document.jsx", "app/(main)/test2/page.jsx", "utils/serverAction.jsx", "app/api/auth/[...nextauth]/route.ts"],
   "exclude": ["node_modules"]
 }

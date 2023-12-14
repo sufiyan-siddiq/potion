@@ -4,26 +4,28 @@ import NextAuth, { NextAuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 
-export const authOptions: NextAuthOptions = {
+type UserType = {
+  id: number;
+  name: string;
+  email: string;
+  password: string | null;
+}
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        name: { label: "Name", type: "text" },
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
         try {
           await connectToDB();
-          const user = await prisma.user.findFirst({ where: { email: credentials?.email } })
-          if (!user) {
-            return null
-          }
-          if (user?.password === credentials?.password)
-            return user
-          return null
-        } catch (error) {
+          const user: UserType | null = await prisma.user.findFirst({ where: { email: credentials?.email } })
+          if (!user || user.password !== credentials?.password)
+            return null;
+          return user
+        } catch (error: any) {
           console.log(error);
           return null
         } finally {
@@ -46,9 +48,9 @@ export const authOptions: NextAuthOptions = {
           const { name, email } = user;
           await connectToDB();
           let userExist = await prisma.user.findFirst({ where: { email } })
-          if (userExist) 
+          if (userExist)
             return userExist
-          
+
           const Newuser = await prisma.user.create({
             //@ts-ignore
             data: { name, email }
@@ -59,7 +61,7 @@ export const authOptions: NextAuthOptions = {
         } finally {
           prisma.$disconnect()
         }
-        return user
+      return user
     },
     async jwt({ token, user }) {
       if (user) {
