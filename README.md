@@ -1,3 +1,13 @@
+## blue
+https://coolors.co/palette/012a4a-013a63-01497c-014f86-2a6f97-2c7da0-468faf-61a5c2-89c2d9-a9d6e5
+
+## red
+https://coolors.co/palette/0b3954-087e8b-bfd7ea-ff5a5f-c81d25
+
+## voilet
+https://coolors.co/palette/baebff-bbdbfe-bccbfd-bebcfc-bfacfb-c09cfa-c18cf9-c37df8-c46df7-c55df6
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

@@ -1,27 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 46 100% 97%;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    
+    /* --popover: 0 0% 100%; */
+    /* --popover-foreground: 222.2 84% 4.9%; */
+    --popover: 0 0% 25%;
+    --popover-foreground: 0 0% 100%;
+    
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    
+    /* --destructive: 0 84.2% 60.2%; */
+    --destructive: 357 75% 45%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    
+    --radius: 0.5rem;
+  }
+  
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  * {
+    --input: 214.3 31.8% 91.4%;
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.nav{
+  font-family: 'Sacramento', cursive;
+}
+
+#main{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+button:disabled{
+  color: hsl(215.4 16.3% 46.9%);
+  cursor: progress;
 }
