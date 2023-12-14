@@ -92,7 +92,7 @@ const Document = ({ docID }) => {
         <span className='absolute hidden group-hover/coverImg:block bottom-0 right-0'>
           {!doc?.note?.isArchived ?
             <DialogButton edgestore={edgestore} coverUpdate={coverUpdate} id={docID} userId={doc?.note?.userId} coverImg={doc?.note?.coverImg} update={update} /> :
-            <Button variant='outline' disabled={true}>Can't Change</Button>
+            <Button variant='outline' disabled={true}>Can&apos;t Change</Button>
           }
         </span>
         {/* remove button */}
