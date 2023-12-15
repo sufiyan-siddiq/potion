@@ -18,7 +18,8 @@ const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials) {
+      //@ts-ignore
+      async authorize(credentials, req) {
         try {
           await connectToDB();
           const user: UserType | null = await prisma.user.findFirst({ where: { email: credentials?.email } })
