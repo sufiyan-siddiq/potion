@@ -114,7 +114,7 @@ const Document = ({ docID }) => {
       {/* emoji icon */}
       <div className='h-12 flex justify-between items-center px-3 relative'>
         {!isValidating && <>
-          <EmojiDialog id={docID} userId={doc?.note?.icon} emoji={doc?.note?.icon} loading={loading} setLoading={setLoading} />
+          <EmojiDialog id={docID} userId={doc?.note?.userId} emoji={doc?.note?.icon} loading={loading} setLoading={setLoading} />
           <Input type='text' onChange={handleTitle}
             className='border-none placeholder:text-white focus-visible:ring-0' defaultValue={doc?.note?.title} />
         </>}

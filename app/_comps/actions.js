@@ -41,7 +41,6 @@ export const updateDoc = async (id, userId, coverImg, title, content) => {
 
 export const iconUpdate = async (id, userId, icon) => {
     try {
-        console.log(id,' ',userId,' ',icon)
         const response = await fetch('https://potion-docs.vercel.app/api/update',
             {
                 method: 'PUT',
