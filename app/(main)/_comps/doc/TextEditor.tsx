@@ -33,7 +33,7 @@ export default function Editor({ id, userId, initialContent, editable, setLoadin
       ...darkDefaultTheme.colors,
       editor: {
         text: "#ffffff",
-        background: "#000000",
+        background: "#151515",
       },
       hovered: {
         text: "#171717",

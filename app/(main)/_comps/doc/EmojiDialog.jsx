@@ -15,22 +15,22 @@ import {
 import { BsFileEarmark } from "react-icons/bs";
 import { LuDelete } from "react-icons/lu";
 
-const EmojiDialog = ({ id, emoji, parentId, loading, setLoading }) => {
+const EmojiDialog = ({ id, userId, emoji, parentId, loading, setLoading }) => {
     let [icon, setIcon] = useState(emoji)
 
     const handleEmojiClick = async ({ emoji }) => {
         setLoading(true)
         setIcon(emoji)
-        await iconUpdate(id, emoji)
+        await iconUpdate(id, userId, emoji)
         setLoading(false)
-        revalidateList(id, parentId)
+        revalidateList(userId, parentId)
     }
     const deleteIcon = async () => {
         setLoading(true)
         setIcon('')
-        await iconUpdate(id, "")
+        await iconUpdate(id, userId, "")
         setLoading(false)
-        revalidateList(id, parentId)
+        revalidateList(userId, parentId)
     }
     return (
         <Dialog className='w-max'>

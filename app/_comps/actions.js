@@ -1,6 +1,6 @@
 export const signup = async (name, email, password) => {
     try {
-        let response = await fetch('http://localhost:3000/api/signup', {
+        let response = await fetch('https://potion-docs.vercel.app/api/signup', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ name, email, password })
@@ -13,7 +13,7 @@ export const signup = async (name, email, password) => {
 
 export const add_new_doc = async (userId, parentId, title) => {
     try {
-        let response = await fetch('http://localhost:3000/api/createDoc', {
+        let response = await fetch('https://potion-docs.vercel.app/api/createDoc', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ userId, parentId, title })
@@ -27,13 +27,12 @@ export const add_new_doc = async (userId, parentId, title) => {
 
 export const updateDoc = async (id, userId, coverImg, title, content) => {
     try {
-        const response = await fetch('http://localhost:3000/api/update',
+        const response = await fetch('https://potion-docs.vercel.app/api/update',
             {
                 method: 'PUT',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify({ id, userId, coverImg, title, content })
             })
-        let res = await response.json()
         return response.status
     } catch (error) {
         console.log(error)
@@ -42,11 +41,12 @@ export const updateDoc = async (id, userId, coverImg, title, content) => {
 
 export const iconUpdate = async (id, userId, icon) => {
     try {
-        const response = await fetch('http://localhost:3000/api/update',
+        console.log(id,' ',userId,' ',icon)
+        const response = await fetch('https://potion-docs.vercel.app/api/update',
             {
                 method: 'PUT',
                 headers: { 'content-type': 'application/json' },
-                body: JSON.stringify({ id, userId, undefined, undefined, undefined, icon })
+                body: JSON.stringify({ id, userId, undefined, undefined, undefined, undefined, icon })
             })
         return response.status
     } catch (error) {
@@ -56,7 +56,7 @@ export const iconUpdate = async (id, userId, icon) => {
 
 export const deleteDoc = async (id, userId, parentId) => {
     try {
-        const response = await fetch('http://localhost:3000/api/delete',
+        const response = await fetch('https://potion-docs.vercel.app/api/delete',
             {
                 method: 'DELETE',
                 headers: { 'content-type': 'application/json' },

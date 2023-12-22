@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import useSWR, { mutate } from 'swr'
+import useSWR, { mutate, preload } from 'swr'
 
 import { useRouter } from 'next/navigation';
 import { revalidateDoc } from '../Document'
@@ -18,10 +18,10 @@ const DocList = ({ parentId = null, depth = 0, flag, trash }) => {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   const session = useSession()
-  var userId = useSWR(`/api/getId?email=${session.data?.user?.email}`, fetcher,).data?.id
+  var userId = useSWR(`https://potion-docs.vercel.app/api/getId?email=${session.data?.user?.email}`, fetcher,).data?.id
 
-  // preload(`/api/getDocs?userId=${userId}&parentId=${parentId}`, fetcher)
-  const { data, error, isValidating, mutate } = useSWR(`/api/getDocs?userId=${userId}&parentId=${parentId}`, fetcher, {
+  preload(`https://potion-docs.vercel.app/api/getDocs?userId=${userId}&parentId=${parentId}`, fetcher)
+  const { data, error, isValidating, mutate } = useSWR(`https://potion-docs.vercel.app/api/getDocs?userId=${userId}&parentId=${parentId}`, fetcher, {
     optimisticUpdates: true,
     fallbackData: { data: [] },
     errorRetry: 3,
@@ -41,7 +41,7 @@ const DocList = ({ parentId = null, depth = 0, flag, trash }) => {
   const newDoc = async (parentId) => {
     setLoading(true)
     let res = await add_new_doc(userId, parentId, "Untitled")
-    mutate(`/api/getDocs?userId=${userId}&parentId=${parentId}`)
+    mutate(`https://potion-docs.vercel.app/api/getDocs?userId=${userId}&parentId=${parentId}`)
     router.push(`/home/${res}`)
     setLoading(false)
   }
@@ -51,7 +51,7 @@ const DocList = ({ parentId = null, depth = 0, flag, trash }) => {
     let res = await archive(id, userId, isArchived)
     if (res)
       setLoading(false)
-    mutate(`/api/getDocs?userId=${userId}&parentId=${parentId}`)
+    mutate(`https://potion-docs.vercel.app/api/getDocs?userId=${userId}&parentId=${parentId}`)
     revalidateDoc(id)
   }
 
@@ -59,7 +59,7 @@ const DocList = ({ parentId = null, depth = 0, flag, trash }) => {
     setLoading(true)
     let res = await deleteDoc(id, userId, parentId)
     router.push('/')
-    mutate(`/api/getDocs?userId=${userId}&parentId=${parentId}`)
+    mutate(`https://potion-docs.vercel.app/api/getDocs?userId=${userId}&parentId=${parentId}`)
     revalidateDoc(id)
     if (res)
       setLoading(false)
@@ -105,5 +105,5 @@ const DocList = ({ parentId = null, depth = 0, flag, trash }) => {
 
 export default DocList
 export const revalidateList = (userId, parentId) => {
-  mutate(`/api/getDocs?userId=${userId}&parentId=${parentId}`)
+  mutate(`https://potion-docs.vercel.app/api/getDocs?userId=${userId}&parentId=${parentId}`)
 }

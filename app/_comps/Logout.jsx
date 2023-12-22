@@ -13,7 +13,6 @@ const Logout = () => {
   const handleLogout = async () => {
     await signOut({ redirect: false })
     toast({ description: "Logged out !" })
-    console.log(localStorage.getItem('userId'))
     router.push('/')
     location.reload();
   }

@@ -53,6 +53,7 @@
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 6px;
+  color: #555;
 }
 ::-webkit-scrollbar-track {
   background: #f1f1f1; 

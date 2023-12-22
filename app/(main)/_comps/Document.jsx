@@ -25,13 +25,14 @@ const Document = ({ docID }) => {
   const { edgestore } = useEdgeStore();
   const [loading, setLoading] = useState(false)
 
-  const { data: doc, error, isValidating, mutate } = useSWR(`http://localhost:3000/api/getDoc?id=${docID}`, fetcher)
+  const { data: doc, error, isValidating, mutate } = useSWR(`https://potion-docs.vercel.app/api/getDoc?id=${docID}`, fetcher)
+
   if (!isValidating && (error || !doc?.note))
     return notFound()
 
 
   const update = () => {
-    mutate(`http://localhost:3000/api/getDoc?id=${docID}`)
+    mutate(`https://potion-docs.vercel.app/api/getDoc?id=${docID}`)
   }
 
   const removeCover = async () => {
@@ -113,7 +114,7 @@ const Document = ({ docID }) => {
       {/* emoji icon */}
       <div className='h-12 flex justify-between items-center px-3 relative'>
         {!isValidating && <>
-          <EmojiDialog id={docID} emoji={doc?.note?.icon} loading={loading} setLoading={setLoading} />
+          <EmojiDialog id={docID} userId={doc?.note?.icon} emoji={doc?.note?.icon} loading={loading} setLoading={setLoading} />
           <Input type='text' onChange={handleTitle}
             className='border-none placeholder:text-white focus-visible:ring-0' defaultValue={doc?.note?.title} />
         </>}
@@ -133,5 +134,5 @@ const Document = ({ docID }) => {
 export default Document
 
 export const revalidateDoc = (docID) => {
-  mutate(`http://localhost:3000/api/getDoc?id=${docID}`)
+  mutate(`https://potion-docs.vercel.app/api/getDoc?id=${docID}`)
 }
